@@ -1,4 +1,5 @@
 const express = require("express");
-const { signup } = require("../../frontend/src/Services/Userapi");
+const { signup } = require("../Controller/Usercontroller");
 const router=express.Router();
-router.post('/signup')
+router.post('/signup',signup)
+module.exports=router

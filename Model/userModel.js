@@ -13,22 +13,13 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true,
     },  
-    verfied:{
-        type: Boolean,
-        default:false
-    },
-    // phoneNumber :{
-    //     type:Number,
-    //     required:true,
-
-    // },
+  
+   
     blockStatus:{
        type:Boolean,
        default:false,
     },
-    image:{
-        type: Object,
-    },
+  
     
 });
 
