@@ -5,11 +5,17 @@ const dbconnection = require("./Config/dbconnection");
 const app = express();
 const AdminRoutes=require("./Routes/AdminRoutes")
 const UserRoutes=require("./Routes/UserRoutes")
+
+
+
+
 dbconnection.dbConnect();
 const PORT = 4000;
-app.use(express.json())
-
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({extended:false}))
+
+
 app.use("/",UserRoutes)
 
 

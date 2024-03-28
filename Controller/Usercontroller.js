@@ -13,7 +13,7 @@ const{email,password,username}=req.body;
             return res.json({message:"Email already exists",status:false});
         }
         const newUser=new Usermodel({
-            userName:userName,
+            userName:username,
             email:email,
             password:password,
         })
@@ -31,5 +31,28 @@ const{email,password,username}=req.body;
 
         
     }
-};
+}
+    module.exports.login = async (req, res, next) => {
+        console.log(req.body, "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+        const { userName, password } = req.body;
+        try {
+            const user = await Usermodel.findOne({ userName: userName });
+            if (!user) {
+                return res.json({ message: "User not found", status: false });
+            }
+          
+            const token = createToken(user._id);
+            return res.json({
+                message: "Login successful",
+                status: true,
+                token,
+            });
+        } catch (error) {
+            console.log(error);
+            return res.json({ message: "Internal server error in login", status: false });
+        }
+    };
+
+
+
 
